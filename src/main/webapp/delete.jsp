@@ -6,9 +6,10 @@
 	Long no = Long.parseLong(request.getParameter("no"));
 	String password = request.getParameter("password");
 	
-	
-	
-	new GuestbookDao().delete(no, password); 
+	GuestbookVo vo = new GuestbookVo();
+	vo.setNo(no);
+	vo.setPassword(password);
+	new GuestbookDao().delete(vo);
 	
 	response.sendRedirect(request.getContextPath());
 %>

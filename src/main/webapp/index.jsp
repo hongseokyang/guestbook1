@@ -27,25 +27,27 @@
 	</table>
 	</form>
 	<br>
-	<table width=510 border=1>
-		<%	
-			int i=1;
-			for(GuestbookVo vo: list) {
-		%>
-		
-		<tr>
-			<td><%=i %></td>
-			<td><%=vo.getName() %></td>
-			<td><%=vo.getRegDate() %></td>
-			<td><a href="<%=request.getContextPath()%>/deleteform.jsp?no=<%=vo.getNo()%>">삭제</a></td>
-		</tr>
-		<tr>
-			<td colspan=4><%=vo.getContents() %></td>
-		</tr>
-		<%
-				i++;
-			}
-		%>
-	</table>
+	<%
+		int count = list.size();
+		int index = 0;
+		for(GuestbookVo vo : list){
+	%>
+		<br>
+		<table width=510 border=1>
+			<tr>
+				<td>[<%=count-index++ %>]</td>
+				<td><%=vo.getName() %></td>
+				<td><%=vo.getRegDate() %></td>
+				<td><a href="deleteform.jsp?no=<%=vo.getNo() %>">삭제</a></td>
+			</tr>
+			<tr>
+				<td colspan=4>
+					<%=vo.getContents().replaceAll("\n", "<br>") %>
+				</td>
+			</tr>
+		</table>
+	<%
+		}
+	%>
 </body>
 </html>
